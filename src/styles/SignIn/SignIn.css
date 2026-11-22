@@ -1,0 +1,25 @@
+#SignInComponent{
+    width: 30vw;
+    height: 577px;
+    display: flex;
+    flex-direction: column;
+    font-family: "Manrope", sans-serif;
+}
+
+#SignInComponentTitle{
+    text-align: center;
+    flex-shrink: 0;
+    height: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: rgba(10, 26, 79, 1);
+}
+
+#SignInComponentSubTitle{
+    text-align: center;
+    height: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
