@@ -1,0 +1,218 @@
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+.container {
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: 0 1.25rem;
+}
+
+.ldc-hero {
+  background: var(--c-primary);
+  color: var(--c-white);
+  padding-top: 1.25rem;
+}
+
+.ldc-hero .season {
+  margin: 0;
+  font-size: var(--fs-label);
+  color: var(--c-accent);
+}
+
+.ldc-hero h1 {
+  margin: .25rem 0 1rem;
+  font-size: var(--fs-page);
+  line-height: 40px;
+}
+
+.tabs {
+  display: flex;
+  gap: .25rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  overflow-x: auto;
+}
+
+.tab {
+  display: block;
+  padding: .6rem 1rem;
+  color: var(--c-white);
+  text-decoration: none;
+  font-weight: 700;
+  font-size: var(--fs-caption);
+  border-radius: 8px 8px 0 0;
+  white-space: nowrap;
+}
+
+.tab:hover {
+  background: rgba(255, 255, 255, .12);
+}
+
+.tab.active {
+  background: var(--c-white);
+  color: var(--c-primary);
+}
+
+.ldc-main {
+  padding-top: 2rem;
+  padding-bottom: 3rem;
+}
+
+.ldc-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 280px;
+  gap: 2rem;
+  align-items: start;
+}
+
+@media (max-width: 800px) {
+  .ldc-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.section-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.section-head h2 {
+  margin: 0;
+  font-size: var(--fs-section);
+  line-height: 32px;
+}
+
+.live-badge {
+  color: var(--c-live);
+  font-size: var(--fs-label);
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.table-wrap {
+  overflow-x: auto;
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius);
+}
+
+.standings {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--fs-caption);
+}
+
+.standings th,
+.standings td {
+  padding: .8rem 1rem;
+  text-align: center;
+}
+
+.standings thead th {
+  background: var(--c-surface);
+  font-weight: 700;
+}
+
+.standings .club,
+.standings thead th:nth-child(2) {
+  text-align: left;
+  font-weight: 400;
+}
+
+.standings thead th:first-child,
+.standings td:first-child {
+  text-align: left;
+}
+
+.standings .pts {
+  font-weight: 800;
+}
+
+.standings tbody tr:not(.zone-row) {
+  border-top: 1px solid var(--c-border);
+}
+
+.standings .zone-row th {
+  background: var(--c-surface);
+  text-align: left;
+  font-size: var(--fs-label);
+}
+
+.standings .is-highlight {
+  background: var(--c-zone-top);
+}
+
+.link-more {
+  display: inline-block;
+  margin-top: 1rem;
+  color: var(--c-action);
+  font-weight: 700;
+}
+
+.info-card {
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius);
+  padding: 1.25rem;
+}
+
+.info-card h3 {
+  margin: 0 0 .75rem;
+  font-size: var(--fs-text);
+}
+
+.info-card p {
+  margin: .4rem 0;
+  font-size: var(--fs-caption);
+}
+
+.info-card .note {
+  color: var(--c-muted);
+  font-size: var(--fs-label);
+  margin-top: 1rem;
+}
+
+.msg-error {
+  background: #fdecec;
+  color: #8e1814;
+  padding: .75rem 1rem;
+  border-radius: 8px;
+}
+
+@media (max-width: 600px) {
+  .container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .ldc-hero h1 {
+    font-size: 1.75rem;
+    line-height: 1.25;
+  }
+
+  .section-head {
+    flex-wrap: wrap;
+  }
+
+  .section-head h2 {
+    font-size: 1.25rem;
+    line-height: 1.3;
+  }
+
+  .tab {
+    padding: .6rem .7rem;
+  }
+
+  .standings th,
+  .standings td {
+    padding: .6rem .5rem;
+  }
+}

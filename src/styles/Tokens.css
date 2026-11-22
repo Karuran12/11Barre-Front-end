@@ -1,0 +1,35 @@
+/* Design tokens 11barre (d'après le mini design system Figma) */
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&display=swap");
+
+:root {
+  --c-primary: #0a1a4f;
+  --c-action: #1f4ce0;
+  --c-accent: #00c8f0;
+  --c-white: #ffffff;
+  --c-surface: #edf1f9;
+  --c-border: #dce3ef;
+  --c-muted: #5b6475;
+  --c-live: #d93025;
+  --c-zone-top: #e3f6fb;
+
+  --fs-page: 2.125rem;
+  --fs-section: 1.625rem;
+  --fs-sub: 1.25rem;
+  --fs-text: 1rem;
+  --fs-caption: .875rem;
+  --fs-label: .8125rem;
+
+  --radius: 12px;
+  --maxw: 1120px;
+}
+
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: "Manrope", system-ui, sans-serif;
+  font-size: var(--fs-text);
+  line-height: 1.5;
+  color: var(--c-primary);
+  background: var(--c-white);
+}
+:focus-visible { outline: 3px solid var(--c-action); outline-offset: 2px; }
