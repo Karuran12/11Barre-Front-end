@@ -1,0 +1,36 @@
+#SignUpComponent{
+    width: 442px;
+    height: 700px;
+    display: flex;
+    flex-direction: column;
+    font-family: "Manrope", sans-serif;
+}
+
+#SignUpComponentTitle{
+    text-align: center;
+    flex-shrink: 0;
+    height: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: rgba(10, 26, 79, 1);
+}
+
+#SignUpComponentSubTitle{
+    text-align: center;
+    height: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: rgba(91, 100, 117, 1);
+    margin-bottom: 20px;
+    font-weight: 600;
+    flex-shrink: 0;
+}
+
+#SignUpComponent #SignUpLabel{
+    text-align: center;
+    color: rgba(31, 76, 224, 1);
+    font-weight: 900;
+    font-size: 16px;
+}
