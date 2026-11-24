@@ -1,0 +1,153 @@
+/* Tokens complémentaires (maquette Figma) + composants partagés (préfixe ui-).
+   Les tokens de base sont dans styles/Tokens.css (ne pas dupliquer). */
+   :root {
+    --c-field: #7a869f;
+    --c-text-soft: #2b3a67;
+    --c-placeholder: #e3e9f4;
+    --c-team-dot: #cbd4e4;
+    --c-live-text: #b3261e;
+  
+    --layout-maxw: 1200px;
+    --layout-pad: clamp(16px, 8.33vw, 120px);
+  }
+  
+  .ui-sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
+  
+  /* ---------- Badge LIVE ---------- */
+  .ui-live {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-weight: 800;
+    font-size: 13px;
+    line-height: 18px;
+    color: var(--c-live-text);
+    white-space: nowrap;
+  }
+  
+  .ui-live-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--c-live);
+  }
+  
+  /* ---------- Étiquette ---------- */
+  .ui-tag {
+    display: inline-flex;
+    align-items: center;
+    padding: 3px 10px;
+    border-radius: 999px;
+    font-weight: 800;
+    font-size: 13px;
+    line-height: 18px;
+    white-space: nowrap;
+  }
+  
+  .ui-tag--accent {
+    background: var(--c-accent);
+    color: var(--c-primary);
+  }
+  
+  .ui-tag--solid {
+    background: var(--c-primary);
+    color: var(--c-white);
+  }
+  
+  .ui-tag--outline {
+    background: var(--c-white);
+    color: var(--c-primary);
+    box-shadow: inset 0 0 0 1.5px var(--c-primary);
+  }
+  
+  /* ---------- Choix (Aujourd'hui / Cette semaine…) ---------- */
+  .ui-segmented {
+    display: inline-flex;
+    gap: 4px;
+    padding: 4px;
+    border-radius: 12px;
+    background: var(--c-surface);
+  }
+  
+  .ui-segmented--full {
+    display: flex;
+  }
+  
+  .ui-segmented--full .ui-segmented-btn {
+    flex: 1;
+  }
+  
+  .ui-segmented-btn {
+    padding: 8px 16px;
+    border: 0;
+    border-radius: 9px;
+    background: transparent;
+    color: var(--c-primary);
+    font-family: inherit;
+    font-weight: 700;
+    font-size: 15px;
+    line-height: 23px;
+    white-space: nowrap;
+    cursor: pointer;
+  }
+  
+  .ui-segmented-btn:hover {
+    background: rgba(10, 26, 79, .06);
+  }
+  
+  .ui-segmented-btn.is-active {
+    background: var(--c-primary);
+    color: var(--c-white);
+  }
+  
+  /* ---------- Image ou emplacement photo ---------- */
+  .ui-picture {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background: var(--c-placeholder);
+    color: var(--c-muted);
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 21px;
+  }
+  
+  .ui-picture img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  
+  /* ---------- Bouton principal (Bouton/Primaire) ---------- */
+  .ui-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 14px 22px;
+    border-radius: 12px;
+    background: var(--c-action);
+    color: var(--c-white);
+    font-weight: 800;
+    font-size: 16px;
+    line-height: 24px;
+    text-decoration: none;
+    text-align: center;
+  }
+  
+  .ui-btn:hover {
+    filter: brightness(1.1);
+  }
+  
+  .ui-btn--block {
+    display: flex;
+    width: 100%;
+  }

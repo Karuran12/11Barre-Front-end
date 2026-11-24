@@ -1,0 +1,131 @@
+.home-news {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+  }
+  
+  .home-news-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  
+  /* ---------- Article à la une ---------- */
+  .home-featured {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+  }
+  
+  .home-featured-img {
+    height: 360px;
+    border-radius: 12px;
+  }
+  
+  .home-featured-meta {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  
+  .home-featured-title {
+    margin: 0;
+    color: var(--c-primary);
+    font-weight: 800;
+    font-size: 26px;
+    line-height: 32px;
+  }
+  
+  /* ---------- Liste d'articles ---------- */
+  .home-articles {
+    list-style: none;
+  }
+  
+  .home-article {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--c-border);
+  }
+  
+  .home-article-img {
+    flex-shrink: 0;
+    width: 120px;
+    height: 80px;
+    border-radius: 10px;
+  }
+  
+  .home-article-texts {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    min-width: 0;
+  }
+  
+  .home-article-category {
+    margin: 0;
+    color: var(--c-text-soft);
+    font-weight: 800;
+    font-size: 13px;
+    line-height: 20px;
+  }
+  
+  .home-article-title {
+    margin: 0;
+    color: var(--c-primary);
+    font-weight: 700;
+    font-size: 17px;
+    line-height: 26px;
+  }
+  
+  /* ---------- Mobile ---------- */
+  @media (max-width: 768px) {
+    .home-news,
+    .home-featured {
+      gap: 24px;
+    }
+  
+    .home-news-head .ui-segmented {
+      display: none;
+    }
+  
+    .home-featured-img {
+      height: 190px;
+    }
+  
+    .home-featured-meta .home-meta-text {
+      display: none;
+    }
+  
+    .home-featured-title {
+      font-size: 20px;
+      line-height: 26px;
+    }
+  
+    .home-article {
+      gap: 12px;
+      padding: 12px 0;
+    }
+  
+    .home-article-img {
+      width: 88px;
+      height: 64px;
+    }
+  
+    .home-article-texts {
+      gap: 0;
+    }
+  
+    .home-article-title {
+      font-size: 16px;
+      line-height: 24px;
+    }
+  
+    .home-article-time {
+      display: none;
+    }
+  }

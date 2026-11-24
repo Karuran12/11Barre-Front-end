@@ -1,0 +1,142 @@
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: var(--c-white);
+  border-bottom: 1px solid var(--c-border);
+}
+
+.navbar-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: calc(var(--layout-maxw) + 2 * var(--layout-pad));
+  margin: 0 auto;
+  padding: 12px var(--layout-pad);
+}
+
+/* ---------- Logo ---------- */
+.nav-logo {
+  display: inline-flex;
+  align-items: center;
+}
+
+.nav-logo-img {
+  display: block;
+  height: 80px;
+  width: auto;
+}
+
+/* ---------- Menus ordinateur ---------- */
+.nav-menus {
+  display: flex;
+  gap: 4px;
+  list-style: none;
+}
+
+.nav-menu {
+  position: relative;
+}
+
+.nav-menu-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 14px;
+  border: 0;
+  border-radius: 10px;
+  background: transparent;
+  color: var(--c-primary);
+  font-family: inherit;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 24px;
+  cursor: pointer;
+}
+
+.nav-menu-btn:hover,
+.nav-menu-btn.is-open {
+  background: var(--c-surface);
+}
+
+.nav-caret {
+  font-size: 13px;
+  line-height: 20px;
+  transition: transform .15s ease;
+}
+
+.nav-menu-btn.is-open .nav-caret {
+  transform: rotate(180deg);
+}
+
+.nav-panel {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  min-width: 240px;
+  padding: 8px;
+  list-style: none;
+  background: var(--c-white);
+  border: 1px solid var(--c-border);
+  border-radius: 12px;
+  box-shadow: 0 12px 32px rgba(10, 26, 79, .12);
+}
+
+.nav-panel[hidden] {
+  display: none;
+}
+
+.nav-panel-link {
+  display: block;
+  padding: 12px;
+  border-radius: 8px;
+  color: var(--c-text-soft);
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 24px;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.nav-panel-link:hover,
+.nav-panel-link.is-active {
+  background: var(--c-surface);
+  color: var(--c-primary);
+}
+
+/* ---------- Burger (mobile) ---------- */
+.nav-burger {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border: 0;
+  border-radius: 12px;
+  background: var(--c-surface);
+  color: var(--c-primary);
+  font-family: inherit;
+  font-weight: 800;
+  font-size: 20px;
+  line-height: 30px;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .navbar-inner {
+    min-height: 63px;
+    padding: 0 16px;
+  }
+
+  .nav-logo-img {
+    height: 34px;
+  }
+
+  .nav-menus {
+    display: none;
+  }
+
+  .nav-burger {
+    display: flex;
+  }
+}

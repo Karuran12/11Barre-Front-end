@@ -1,0 +1,23 @@
+.coming-soon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    max-width: 560px;
+    margin: 0 auto;
+    padding: 96px 16px;
+    text-align: center;
+  }
+  
+  .coming-soon-title {
+    margin: 0;
+    color: var(--c-primary);
+    font-weight: 800;
+    font-size: var(--fs-page);
+    line-height: 40px;
+  }
+  
+  .coming-soon-text {
+    margin: 0 0 8px;
+    color: var(--c-muted);
+  }

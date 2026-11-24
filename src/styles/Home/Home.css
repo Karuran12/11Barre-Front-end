@@ -1,0 +1,101 @@
+.home {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 360px;
+    gap: 40px;
+    align-items: start;
+    max-width: calc(var(--layout-maxw) + 2 * var(--layout-pad));
+    margin: 0 auto;
+    padding: 32px var(--layout-pad) 64px;
+  }
+  
+  .home-main {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    min-width: 0;
+  }
+  
+  .home-side {
+    position: sticky;
+    top: 101px;
+  }
+  
+  .home-only-mobile {
+    display: none;
+  }
+  
+  /* ---------- Titres et textes communs ---------- */
+  .home-page-title {
+    margin: 0;
+    color: var(--c-primary);
+    font-weight: 800;
+    font-size: 32px;
+    line-height: 40px;
+  }
+  
+  .home-section-title {
+    margin: 0;
+    color: var(--c-primary);
+    font-weight: 800;
+    font-size: 26px;
+    line-height: 32px;
+  }
+  
+  .home-meta-text {
+    margin: 0;
+    color: var(--c-muted);
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 21px;
+  }
+  
+  .home-link {
+    color: var(--c-action);
+    font-weight: 700;
+    font-size: 15px;
+    line-height: 23px;
+    text-decoration: none;
+  }
+  
+  .home-link:hover {
+    text-decoration: underline;
+  }
+  
+  /* ---------- Tablette ---------- */
+  @media (max-width: 1024px) {
+    .home {
+      grid-template-columns: minmax(0, 1fr) 300px;
+      gap: 32px;
+    }
+  }
+  
+  /* ---------- Mobile ---------- */
+  @media (max-width: 768px) {
+    .home {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 24px;
+      padding: 20px 16px 32px;
+    }
+  
+    .home-main {
+      gap: 24px;
+    }
+  
+    .home-only-desktop {
+      display: none;
+    }
+  
+    .home-only-mobile {
+      display: block;
+    }
+  
+    .home-page-title {
+      font-size: 24px;
+      line-height: 36px;
+    }
+  
+    .home-section-title {
+      font-size: 20px;
+      line-height: 30px;
+    }
+  }
