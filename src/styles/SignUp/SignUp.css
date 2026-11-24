@@ -6,6 +6,11 @@
     font-family: "Manrope", sans-serif;
 }
 
+#centerX{
+    display: flex;
+    justify-content: center;
+}
+
 #SignUpComponentTitle{
     text-align: center;
     flex-shrink: 0;

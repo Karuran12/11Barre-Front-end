@@ -28,6 +28,11 @@
     flex-shrink: 0;
 }
 
+#centerX{
+    display: flex;
+    justify-content: center;
+}
+
 #SignInComponent #SignInLabel{
     text-align: center;
     color: rgba(31, 76, 224, 1);

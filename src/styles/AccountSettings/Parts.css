@@ -1,0 +1,8 @@
+#Parts{
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    height: 367px;
+    flex-shrink: 0;
+    gap: 20px;
+}

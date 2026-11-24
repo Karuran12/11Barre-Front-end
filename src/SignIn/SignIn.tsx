@@ -4,12 +4,14 @@ import SignInForm from "./SignInForm";
 
 function SignIn(): ReactElement{
     return (
-        <section id="SignInComponent">
-            <h2 id="SignInComponentTitle">Content de te revoir</h2>
-            <label id="SignInComponentSubTitle">Connecte-toi pour retrouver tes pronos et ta carrière.</label>
-            <SignInForm></SignInForm>
-            <label id="SignInLabel">Pas encore de compte ? Créer un compte</label>
-        </section>
+        <div id="centerX">
+            <section id="SignInComponent">
+                <h2 id="SignInComponentTitle">Content de te revoir</h2>
+                <label id="SignInComponentSubTitle">Connecte-toi pour retrouver tes pronos et ta carrière.</label>
+                <SignInForm></SignInForm>
+                <label id="SignInLabel">Pas encore de compte ? Créer un compte</label>
+            </section>
+        </div>
     )
 }
 
