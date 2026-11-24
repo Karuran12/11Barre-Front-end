@@ -1,4 +1,5 @@
 import type { ReactElement } from "react";
+import Picture from "../../UI/Picture";
 import Tag, { type TagVariant } from "../../UI/Tag";
 import type { MercatoItem, MercatoStatus } from "../../types/home";
 
@@ -16,8 +17,11 @@ function MercatoCard({ item }: Props): ReactElement {
 
   return (
     <li className="home-mercato-card">
-      <Tag label={tag.label} variant={tag.variant} />
-      <h3 className="home-mercato-title">{item.title}</h3>
+      {item.image && <Picture src={item.image} alt="" className="home-mercato-img" />}
+      <div className="home-mercato-body">
+        <Tag label={tag.label} variant={tag.variant} />
+        <h3 className="home-mercato-title">{item.title}</h3>
+      </div>
     </li>
   );
 }

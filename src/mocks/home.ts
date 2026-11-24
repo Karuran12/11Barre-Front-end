@@ -1,3 +1,4 @@
+import { ARTICLE_IMAGES as IMG } from "../Home/articleImages";
 import type { LiveMatch, MercatoItem, NewsFeed, NewsPeriod } from "../types/home";
 
 export const newsMock: Record<NewsPeriod, NewsFeed> = {
@@ -8,26 +9,30 @@ export const newsMock: Record<NewsPeriod, NewsFeed> = {
       title: "Soirée européenne: ce qu'il faut retenir des huit matchs d'hier",
       publishedAgo: "Il y a 2 h",
       readingTime: "4 min de lecture",
-    },
+          image: IMG.stadeNuit,
+},
     articles: [
       {
         id: "qualif-directe",
         category: "Phase de ligue",
         title: "Qualification directe: les équipes en bonne position avant la 5e journée",
         publishedAgo: "Il y a 3 h",
-      },
+              image: IMG.classement,
+},
       {
         id: "infirmerie",
         category: "Infirmerie",
         title: "Le point sur les blessés et suspendus avant ce soir",
         publishedAgo: "Il y a 3 h",
-      },
+              image: IMG.infirmerie,
+},
       {
         id: "var",
         category: "Arbitrage",
         title: "Les trois décisions de la VAR qui ont fait parler",
         publishedAgo: "Il y a 3 h",
-      },
+              image: IMG.var,
+},
     ],
   },
   week: {
@@ -37,33 +42,37 @@ export const newsMock: Record<NewsPeriod, NewsFeed> = {
       title: "4e journée : Arsenal et le Bayern font le trou en tête du classement",
       publishedAgo: "Il y a 2 j",
       readingTime: "6 min de lecture",
-    },
+          image: IMG.stadeJour,
+},
     articles: [
       {
         id: "equipe-type",
         category: "Phase de ligue",
         title: "L'équipe type de la semaine, poste par poste",
         publishedAgo: "Il y a 3 j",
-      },
+              image: IMG.tactique,
+},
       {
         id: "barrages",
         category: "Classement",
         title: "Course aux barrages: qui peut encore accrocher le top 24 ?",
         publishedAgo: "Il y a 4 j",
-      },
+              image: IMG.barrages,
+},
       {
         id: "jeunes",
         category: "Talents",
         title: "Cinq jeunes joueurs qui ont crevé l'écran cette semaine",
         publishedAgo: "Il y a 5 j",
-      },
+              image: IMG.jeunes,
+},
     ],
   },
 };
 
 export const mercatoMock: MercatoItem[] = [
-  { id: "lyon-attaquant", status: "official", title: "Un attaquant de 21 ans s'engage avec Lyon jusqu'en 2029" },
-  { id: "psg-defenseur", status: "rumor", title: "Le PSG suivrait un défenseur central de Bundesliga" },
+  { id: "lyon-attaquant", status: "official", title: "Un attaquant de 21 ans s'engage avec Lyon jusqu'en 2029", image: IMG.mercatoOfficiel },
+  { id: "psg-defenseur", status: "rumor", title: "Le PSG suivrait un défenseur central de Bundesliga", image: IMG.mercatoRumeur },
 ];
 
 export const liveMatchesMock: LiveMatch[] = [

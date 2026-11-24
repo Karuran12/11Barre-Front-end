@@ -1,3 +1,4 @@
+import { ARTICLE_IMAGES as IMG } from "../Home/articleImages";
 import { getClubSummary, ordinal } from "./clubStats";
 import type { Club } from "../types/club";
 import type { MercatoItem, NewsFeed } from "../types/home";
@@ -22,6 +23,7 @@ export function buildClubFeed(club: Club): NewsFeed {
       title: headline(club, rank),
       publishedAgo: "Il y a 1 h",
       readingTime: "3 min de lecture",
+      image: IMG.stadeNuit,
     },
     articles: [
       {
@@ -29,18 +31,21 @@ export function buildClubFeed(club: Club): NewsFeed {
         category: "Avant-match",
         title: hasNext ? `${next}: les compositions probables` : `${club.shortName} : le programme des prochaines semaines`,
         publishedAgo: "Il y a 2 h",
+        image: IMG.tactique,
       },
       {
         id: `${club.id}-classement`,
         category: "Classement",
         title: `${ordinal(rank)} avec ${points} pts: où en est ${club.shortName} après 4 journées ?`,
         publishedAgo: "Il y a 5 h",
+        image: rank <= 8 ? IMG.classement : IMG.barrages,
       },
       {
         id: `${club.id}-infirmerie`,
         category: "Infirmerie",
         title: `${club.shortName}: le point sur les blessés avant la 5e journée`,
         publishedAgo: "Il y a 8 h",
+        image: IMG.infirmerie,
       },
     ],
   };
@@ -48,6 +53,6 @@ export function buildClubFeed(club: Club): NewsFeed {
 
 export function buildClubMercato(club: Club): MercatoItem[] {
   return [
-    { id: `${club.id}-rumeur`, status: "rumor", title: `${club.shortName} surveillerait un milieu offensif pour janvier` },
+    { id: `${club.id}-rumeur`, status: "rumor", title: `${club.shortName} surveillerait un milieu offensif pour janvier`, image: IMG.mercatoRumeur },
   ];
 }

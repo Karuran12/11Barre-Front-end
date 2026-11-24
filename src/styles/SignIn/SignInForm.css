@@ -1,21 +1,21 @@
-s.auth-card {
-    display: flex;
-    flex-direction: column;
-    gap: 18px;
-    padding: 28px;
-    border: 1px solid var(--c-border);
-    border-radius: 18px;
-    background: var(--c-white);
+.auth-card {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding: 28px;
+  border: 1px solid var(--c-border);
+  border-radius: 18px;
+  background: var(--c-white);
+}
+
+.auth-forgot {
+  align-self: flex-start;
+}
+
+@media (max-width: 768px) {
+  .auth-card {
+    padding: 0;
+    border: 0;
+    gap: 16px;
   }
-  
-  .auth-forgot {
-    align-self: flex-start;
-  }
-  
-  @media (max-width: 768px) {
-    .auth-card {
-      padding: 0;
-      border: 0;
-      gap: 16px;
-    }
-  }
+}

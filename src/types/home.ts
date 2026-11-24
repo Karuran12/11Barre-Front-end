@@ -29,6 +29,7 @@ export type MercatoItem = {
   id: string;
   status: MercatoStatus;
   title: string;
+  image?: string;
 };
 
 export type LiveMatch = {
