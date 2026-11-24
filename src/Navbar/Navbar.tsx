@@ -3,11 +3,12 @@ import { useLocation } from "react-router-dom";
 import NavLogo from "./NavLogo";
 import NavDropdown from "./NavDropdown";
 import MobileMenu from "./MobileMenu";
-import { NAV_MENUS } from "./navLinks";
+import { useNavMenus } from "./useNavMenus";
 import { useClickOutside } from "./useClickOutside";
 import "../styles/Navbar/Navbar.css";
 
 function Navbar(): ReactElement {
+  const menus = useNavMenus();
   const [openMenu, setOpenMenu] = useState<string | null>(null);
   const [mobileOpen, setMobileOpen] = useState(false);
   const menusRef = useRef<HTMLUListElement>(null);
@@ -30,7 +31,7 @@ function Navbar(): ReactElement {
         <NavLogo />
 
         <ul ref={menusRef} className="nav-menus">
-          {NAV_MENUS.map((menu) => (
+          {menus.map((menu) => (
             <NavDropdown
               key={menu.id}
               menu={menu}

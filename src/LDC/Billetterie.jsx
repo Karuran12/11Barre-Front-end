@@ -2,6 +2,7 @@ import { useState } from "react";
 import { getTickets } from "./api";
 import { useAsync } from "./useAsync";
 import AsyncState from "./AsyncState";
+import ClubName from "../Club/ClubName";
 import "../styles/LDC/Pages.css";
 const STATUS = {
     available: { label: "Disponible", cls: "badge badge-ok" },
@@ -26,7 +27,11 @@ export default function Billetterie() {
             const joined = waitlist.includes(t.id);
             return (<li key={t.id} className="ticket-card">
               <span className={s.cls}>{s.label}</span>
-              <h3>{t.match}</h3>
+              <h3 className="ticket-match" aria-label={t.match}>
+                <ClubName clubId={t.homeId} size={28}/>
+                <span className="ticket-vs" aria-hidden="true">contre</span>
+                <ClubName clubId={t.awayId} size={28}/>
+              </h3>
               <p className="meta">{t.when} · {t.venue}</p>
               <p className="price">{t.status === "soldout" ? "Plus de places en vente" : `À partir de ${t.priceFrom} €`}</p>
               {t.status === "soldout" ? (<button type="button" className="btn btn-outline btn-block" disabled={joined} onClick={() => joinWaitlist(t.id)}>

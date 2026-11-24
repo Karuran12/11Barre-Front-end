@@ -1,0 +1,64 @@
+/* ---------- Logo du club ---------- */
+.club-crest {
+  flex-shrink: 0;
+  width: var(--crest-size);
+  height: var(--crest-size);
+  object-fit: contain;
+}
+
+.club-crest--fallback {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  box-shadow: inset 0 0 0 1px rgba(10, 26, 79, .15);
+  font-weight: 800;
+  font-size: calc(var(--crest-size) * .34);
+  line-height: 1;
+}
+
+/* ---------- Maillot ---------- */
+.club-jersey {
+  position: relative;
+  display: block;
+  aspect-ratio: 1261 / 1247; 
+  filter: drop-shadow(0 0 1px rgba(10, 26, 79, .6)); 
+}
+
+.club-jersey-layer {
+  position: absolute;
+  inset: 0;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+  transition: background-color .3s ease;
+}
+
+.club-jersey-body {
+  background: var(--jersey-body);
+  -webkit-mask-image: url("/images/logo/jersey-body.png");
+  mask-image: url("/images/logo/jersey-body.png");
+}
+
+.club-jersey-shading {
+  background: #fff;
+  opacity: .35;
+  -webkit-mask-image: url("/images/logo/jersey-shading.png");
+  mask-image: url("/images/logo/jersey-shading.png");
+}
+
+.club-jersey-details {
+  background: var(--jersey-details);
+  -webkit-mask-image: url("/images/logo/jersey-details.png");
+  mask-image: url("/images/logo/jersey-details.png");
+}
+/* ---------- Logo + nom (ClubName) ---------- */
+.club-name {
+display: inline-flex;
+align-items: center;
+gap: 8px;
+min-width: 0;
+}

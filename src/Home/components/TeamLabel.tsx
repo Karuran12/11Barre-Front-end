@@ -1,20 +1,19 @@
 import type { ReactElement } from "react";
-import type { Team } from "../../types/home";
+import ClubCrest from "../../Club/ClubCrest";
+import { getClub } from "../../mocks/clubs";
 
 type Props = {
-  team: Team;
+  clubId: string;
 };
 
-// Pastille (ou logo du club) + nom de l'équipe
-function TeamLabel({ team }: Props): ReactElement {
+// Logo du club (API) + nom de l'équipe
+function TeamLabel({ clubId }: Props): ReactElement {
+  const club = getClub(clubId);
+
   return (
     <span className="home-team">
-      {team.logo ? (
-        <img className="home-team-logo" src={team.logo} alt="" />
-      ) : (
-        <span className="home-team-dot" aria-hidden="true" />
-      )}
-      {team.name}
+      {club && <ClubCrest club={club} size={20} />}
+      {club?.name ?? clubId}
     </span>
   );
 }

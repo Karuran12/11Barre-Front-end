@@ -1,40 +1,21 @@
-#SignInForm{
-    border: 1px solid black;
-    width: 382px;
-    height: 380px;
+s.auth-card {
     display: flex;
     flex-direction: column;
-    border-radius:  30px;
-    padding: 29px;
-    gap: 20px;
-    flex-shrink: 0;
-    margin-bottom: 20px;
-}
-
-#SignInForm #ForgottenPasswordLabel{
-    font-weight: 700;
-    color: rgba(31, 76, 224, 1);
-}
-
-#SignInForm .SignInFormButton{
-    width: 382;
-    height: 52;
-    padding-top: 14px;
-    padding-right: 22px;
-    padding-bottom: 14px;
-    padding-left: 22px;
-    opacity: 1;
-    border-radius: 12px;
-    border: 2px solid rgba(31, 76, 224, 1);
-    color: rgb(255, 255, 255);
-    background-color: rgba(31, 76, 224, 1);
-    flex-shrink: 0;
-    text-align: center;
-    font-weight: 800;
-}
-
-#SignInForm #GoogleButton{
-    border: 2px solid rgba(10, 26, 79, 1);
-    color: rgba(10, 26, 79, 1);
-    background-color: transparent;
-}
+    gap: 18px;
+    padding: 28px;
+    border: 1px solid var(--c-border);
+    border-radius: 18px;
+    background: var(--c-white);
+  }
+  
+  .auth-forgot {
+    align-self: flex-start;
+  }
+  
+  @media (max-width: 768px) {
+    .auth-card {
+      padding: 0;
+      border: 0;
+      gap: 16px;
+    }
+  }

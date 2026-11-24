@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { getResults, getUpcoming } from "./api";
 import { useAsync } from "./useAsync";
 import AsyncState from "./AsyncState";
+import ClubName from "../Club/ClubName";
 import "../styles/LDC/Pages.css";
 const MATCHDAYS = [1, 2, 3, 4];
 export default function Matchs() {
@@ -24,8 +25,8 @@ export default function Matchs() {
         <ul className="result-grid">
           {results.data?.map((m) => (<li key={m.id} className="result-card">
               <p className="meta">{m.date} · Terminé</p>
-              <p className="score-line"><span>{m.home}</span><strong>{m.homeScore}</strong></p>
-              <p className="score-line"><span>{m.away}</span><strong>{m.awayScore}</strong></p>
+              <p className="score-line"><ClubName clubId={m.homeId}/><strong>{m.homeScore}</strong></p>
+              <p className="score-line"><ClubName clubId={m.awayId}/><strong>{m.awayScore}</strong></p>
             </li>))}
         </ul>
       </section>
@@ -36,9 +37,9 @@ export default function Matchs() {
         <ul className="upcoming">
           {upcoming.data?.map((m) => (<li key={m.id} className="upcoming-row">
               <div className="when"><strong>{m.time}</strong><span>{m.date}</span></div>
-              <p className="teams">{m.home} – {m.away}</p>
+              <p className="teams"><ClubName clubId={m.homeId}/><span aria-hidden="true">–</span><ClubName clubId={m.awayId}/></p>
               <div className="actions">
-                {/* TODO : lier à la page Pronos (autre membre du groupe) */}
+                {/* TODO*/}
                 <button type="button" className="btn">Faire mon prono</button>
                 <Link to="/ldc/billetterie" className="btn btn-outline">Billets</Link>
               </div>

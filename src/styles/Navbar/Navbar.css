@@ -15,6 +15,22 @@
   padding: 12px var(--layout-pad);
 }
 
+:root[data-club] .navbar {
+  border-bottom-color: transparent;
+}
+
+:root[data-club] .navbar::after {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--club-strong) 0 50%, var(--club-secondary) 50% 100%);
+  pointer-events: none;
+}
+
 /* ---------- Logo ---------- */
 .nav-logo {
   display: inline-flex;
@@ -71,6 +87,7 @@
 
 .nav-panel {
   position: absolute;
+  z-index: 2;
   top: calc(100% + 8px);
   right: 0;
   min-width: 240px;

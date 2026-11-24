@@ -151,12 +151,6 @@
   background: var(--c-zone-top);
 }
 
-.link-more {
-  display: inline-block;
-  margin-top: 1rem;
-  color: var(--c-action);
-  font-weight: 700;
-}
 
 .info-card {
   border: 1px solid var(--c-border);

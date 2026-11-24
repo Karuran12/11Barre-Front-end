@@ -1,0 +1,208 @@
+.footer {
+    position: relative;
+    margin-top: 32px;
+    background: var(--c-primary);
+    color: var(--c-white);
+  }
+
+  .footer::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: var(--c-accent);
+  }
+  
+  :root[data-club] .footer::before {
+    background: linear-gradient(90deg, var(--club-strong) 0 50%, var(--club-secondary) 50% 100%);
+  }
+  
+  .footer-inner {
+    display: grid;
+    grid-template-columns: minmax(220px, 1fr) 2.4fr;
+    gap: 48px;
+    max-width: calc(var(--layout-maxw) + 2 * var(--layout-pad));
+    margin: 0 auto;
+    padding: 56px var(--layout-pad) 40px;
+  }
+  
+  /* ---------- Marque ---------- */
+  .footer-brand {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+  
+  .footer-logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    color: var(--c-white);
+    text-decoration: none;
+  }
+
+  .footer-logo-img {
+    height: 56px;
+    padding: 6px;
+    border-radius: 14px;
+    background: var(--c-white);
+  }
+  
+  .footer-logo-text {
+    font-weight: 800;
+    font-size: 24px;
+    line-height: 32px;
+  }
+  
+  .footer-tagline {
+    margin: 0;
+    max-width: 280px;
+    color: rgba(255, 255, 255, .75);
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 23px;
+  }
+  
+  .footer-club {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 14px 8px 10px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, .1);
+    color: var(--c-white);
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 21px;
+    text-decoration: none;
+    transition: background-color .15s ease;
+  }
+  
+  .footer-club:hover {
+    background: rgba(255, 255, 255, .18);
+  }
+  
+  .footer-club .club-crest {
+    border-radius: 50%;
+    background: var(--c-white);
+    padding: 2px;
+  }
+  
+  /* ---------- Liens ---------- */
+  .footer-nav {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 24px;
+  }
+  
+  .footer-col-title {
+    margin: 0 0 12px;
+    color: var(--c-accent);
+    font-weight: 800;
+    font-size: 14px;
+    line-height: 21px;
+    text-transform: uppercase;
+    letter-spacing: .06em;
+  }
+  
+  .footer-col-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  
+  .footer-link {
+    color: rgba(255, 255, 255, .85);
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 23px;
+    text-decoration: none;
+  }
+  
+  .footer-link:hover {
+    color: var(--c-white);
+    text-decoration: underline;
+  }
+  
+  /* ---------- Bas de page ---------- */
+  .footer-bottom {
+    border-top: 1px solid rgba(255, 255, 255, .12);
+  }
+  
+  .footer-bottom-inner {
+    display: flex;
+    align-items: center;
+    gap: 8px 24px;
+    flex-wrap: wrap;
+    max-width: calc(var(--layout-maxw) + 2 * var(--layout-pad));
+    margin: 0 auto;
+    padding: 18px var(--layout-pad);
+  }
+  
+  .footer-legal {
+    margin: 0;
+    color: rgba(255, 255, 255, .6);
+    font-size: 13px;
+    line-height: 20px;
+  }
+  
+  .footer-top {
+    margin-left: auto;
+    padding: 6px 12px;
+    border: 1px solid rgba(255, 255, 255, .25);
+    border-radius: 999px;
+    background: transparent;
+    color: var(--c-white);
+    font-family: inherit;
+    font-weight: 700;
+    font-size: 13px;
+    cursor: pointer;
+  }
+  
+  .footer-top:hover {
+    background: rgba(255, 255, 255, .1);
+  }
+  
+  /* ---------- Tablette ---------- */
+  @media (max-width: 1024px) {
+    .footer-inner {
+      grid-template-columns: 1fr;
+      gap: 32px;
+    }
+  }
+  
+  /* ---------- Mobile ---------- */
+  @media (max-width: 768px) {
+    .footer-inner {
+      padding: 40px 16px 28px;
+    }
+  
+    .footer-nav {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 28px 16px;
+    }
+  
+    .footer-bottom-inner {
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 16px;
+    }
+  
+    .footer-top {
+      margin-left: 0;
+    }
+  }
+  
+  .footer-legal-link {
+    text-decoration: underline;
+  }
+  
+  .footer-legal-link:hover {
+    color: var(--c-white);
+  }

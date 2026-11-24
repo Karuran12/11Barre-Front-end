@@ -67,28 +67,6 @@ export const mercatoMock: MercatoItem[] = [
 ];
 
 export const liveMatchesMock: LiveMatch[] = [
-  {
-    id: "psg-bayern",
-    home: { name: "PSG" },
-    away: { name: "Bayern Munich", shortName: "Bayern" },
-    homeScore: 2,
-    awayScore: 1,
-    status: "LIVE 67'",
-  },
-  {
-    id: "real-inter",
-    home: { name: "Real Madrid" },
-    away: { name: "Inter" },
-    homeScore: 0,
-    awayScore: 0,
-    status: "LIVE 34'",
-  },
-  {
-    id: "arsenal-benfica",
-    home: { name: "Arsenal" },
-    away: { name: "Benfica" },
-    homeScore: 1,
-    awayScore: 1,
-    status: "MI-TEMPS",
-  },
+  { id: "11", homeId: "barca", awayId: "dortmund", homeScore: 1, awayScore: 0, status: "EN DIRECT 67'" },
+  { id: "12", homeId: "liverpool", awayId: "napoli", homeScore: 1, awayScore: 1, status: "MI-TEMPS" },
 ];

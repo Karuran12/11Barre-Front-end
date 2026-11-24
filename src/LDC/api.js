@@ -1,5 +1,8 @@
 import { standingsMock } from "../mocks/standings";
-import { matchesMock, clubsMock, ticketsMock } from "../mocks/ldc";
+import { matchesMock, ticketsMock } from "../mocks/ldc";
+import { getAllClubSummaries } from "../Club/clubStats";
+import { findClub } from "../Club/clubMatching";
+import { fetchStandings } from "../services/footballData";
 // Si VITE_API_URL est défini, on appelle le back ; sinon on utilise les mocks.
 const API_URL = import.meta.env.VITE_API_URL;
 async function fetchOrMock(path, mock) {
@@ -12,9 +15,36 @@ async function fetchOrMock(path, mock) {
         throw new Error(`Erreur serveur (${res.status})`);
     return res.json();
 }
-export const getStandings = () => fetchOrMock("/standings", standingsMock);
+
+// Classement: vraies données football-data.org si la clé API est configurée,
+const toRow = (r) => {
+    const club = findClub(r.team);
+    return {
+        rank: r.position,
+        clubId: club?.id,
+        club: club?.name ?? r.team.shortName ?? r.team.name,
+        crest: r.team.crest,
+        played: r.playedGames,
+        won: r.won,
+        drawn: r.draw,
+        lost: r.lost,
+        diff: r.goalDifference,
+        points: r.points,
+        form: r.form ? r.form.split(",") : [],
+    };
+};
+export async function getStandings() {
+    try {
+        const table = await fetchStandings();
+        return { source: "api", rows: table.map(toRow) };
+    }
+    catch {
+        const rows = await fetchOrMock("/standings", standingsMock);
+        return { source: "mock", rows };
+    }
+}
 export const getResults = (matchday) => fetchOrMock(`/matches?matchday=${matchday}`, matchesMock.filter((m) => m.matchday === matchday && m.homeScore !== undefined));
 export const getUpcoming = () => fetchOrMock("/matches/upcoming", matchesMock.filter((m) => m.homeScore === undefined));
-export const getClubs = () => fetchOrMock("/clubs", clubsMock);
+export const getClubs = () => fetchOrMock("/clubs", getAllClubSummaries());
 export const getTickets = () => fetchOrMock("/tickets", ticketsMock);
 // TODO(back) : POST /clubs/:id/alerts et POST /tickets/:id/waitlist

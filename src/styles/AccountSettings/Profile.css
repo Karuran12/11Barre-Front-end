@@ -1,0 +1,55 @@
+.settings-profile {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  
+  .settings-avatar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: var(--club-strong, var(--c-primary));
+    color: var(--c-white);
+    font-weight: 800;
+    font-size: 22px;
+    line-height: 33px;
+  }
+  
+  .settings-title {
+    margin: 0;
+    color: var(--c-primary);
+    font-weight: 800;
+    font-size: 30px;
+    line-height: 45px;
+  }
+  
+  .settings-meta {
+    margin: 0;
+    color: var(--c-muted);
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+    overflow-wrap: anywhere;
+  }
+  
+  @media (max-width: 768px) {
+    .settings-avatar {
+      width: 52px;
+      height: 52px;
+      font-size: 20px;
+    }
+  
+    .settings-title {
+      font-size: 24px;
+      line-height: 32px;
+    }
+  
+    .settings-meta {
+      font-size: 14px;
+      line-height: 21px;
+    }
+  }

@@ -1,36 +1,64 @@
-#SignInComponent{
-    width: 442px;
-    height: 577px;
+.auth-page {
     display: flex;
-    flex-direction: column;
-    font-family: "Manrope", sans-serif;
-}
-
-#SignInComponentTitle{
-    text-align: center;
-    flex-shrink: 0;
-    height: 50px;
-    display: flex;
-    flex-direction: column;
     justify-content: center;
-    color: rgba(10, 26, 79, 1);
-}
-
-#SignInComponentSubTitle{
-    text-align: center;
-    height: 20px;
+    padding: 40px 16px 64px;
+  }
+  
+  .auth-box {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    color: rgba(91, 100, 117, 1);
-    margin-bottom: 20px;
-    font-weight: 600;
-    flex-shrink: 0;
-}
-
-#SignInComponent #SignInLabel{
+    gap: 18px;
+    width: 100%;
+    max-width: 440px;
+  }
+  
+  .auth-title {
+    margin: 0;
+    color: var(--c-primary);
+    font-weight: 800;
+    font-size: 30px;
+    line-height: 45px;
     text-align: center;
-    color: rgba(31, 76, 224, 1);
-    font-weight: 900;
+  }
+  
+  .auth-subtitle {
+    margin: 0;
+    color: var(--c-muted);
+    font-weight: 500;
     font-size: 16px;
-}
+    line-height: 24px;
+    text-align: center;
+  }
+  
+  .auth-switch {
+    margin: 0;
+    color: var(--c-action);
+    font-weight: 800;
+    font-size: 16px;
+    line-height: 24px;
+    text-align: center;
+  }
+  
+  .auth-switch a {
+    color: inherit;
+  }
+  
+  @media (max-width: 768px) {
+    .auth-page {
+      padding: 20px 16px 40px;
+    }
+  
+    .auth-box {
+      gap: 16px;
+    }
+  
+    .auth-title {
+      font-size: 26px;
+      line-height: 39px;
+      text-align: left;
+    }
+  
+    .auth-subtitle {
+      text-align: left;
+    }
+  }

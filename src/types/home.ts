@@ -1,4 +1,5 @@
 export type NewsPeriod = "today" | "week";
+export type NewsTab = "club" | NewsPeriod;
 
 export type FeaturedArticle = {
   id: string;
@@ -30,25 +31,35 @@ export type MercatoItem = {
   title: string;
 };
 
-export type Team = {
-  name: string;
-  shortName?: string; 
-  logo?: string;
-};
-
 export type LiveMatch = {
   id: string;
-  home: Team;
-  away: Team;
+  homeId: string;
+  awayId: string;
   homeScore: number;
   awayScore: number;
   status: string; 
 };
 
+export type ResultMatch = {
+  id: string;
+  homeId: string;
+  awayId: string;
+  homeScore: number;
+  awayScore: number;
+  date: string;
+};
+
+export type HomeMatches = {
+  source: "api" | "mock";
+  live: LiveMatch[];
+  upcoming: UpcomingMatch[];
+  results: ResultMatch[];
+};
+
 export type UpcomingMatch = {
   id: string;
-  home: Team;
-  away: Team;
+  homeId: string;
+  awayId: string;
   date: string;
   time: string;
 };

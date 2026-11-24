@@ -1,6 +1,6 @@
 import type { ReactElement } from "react";
 
-export type TagVariant = "accent" | "solid" | "outline";
+export type TagVariant = "accent" | "solid" | "outline" | "club";
 
 type Props = {
   label: string;

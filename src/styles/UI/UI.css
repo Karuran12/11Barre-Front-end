@@ -4,9 +4,14 @@
     --c-field: #7a869f;
     --c-text-soft: #2b3a67;
     --c-placeholder: #e3e9f4;
-    --c-team-dot: #cbd4e4;
-    --c-live-text: #b3261e;
+      --c-live-text: #b3261e;
   
+    /* États (mini design system Figma) */
+    --c-success-bg: #eaf6ee;
+    --c-success: #145a2a;
+    --c-error: #b3261e;
+    --c-error-bg: #fdecec;
+
     --layout-maxw: 1200px;
     --layout-pad: clamp(16px, 8.33vw, 120px);
   }
@@ -61,6 +66,11 @@
     color: var(--c-white);
   }
   
+  .ui-tag--club {
+    background: var(--club-strong, var(--c-primary));
+    color: var(--c-white);
+  }
+
   .ui-tag--outline {
     background: var(--c-white);
     color: var(--c-primary);
@@ -103,7 +113,7 @@
   }
   
   .ui-segmented-btn.is-active {
-    background: var(--c-primary);
+    background: var(--club-strong, var(--c-primary));
     color: var(--c-white);
   }
   
@@ -151,3 +161,70 @@
     display: flex;
     width: 100%;
   }
+/* ---------- Bouton secondaire (Bouton/Secondaire) ---------- */
+.ui-btn {
+  border: 0;
+  font-family: inherit;
+  cursor: pointer;
+}
+
+.ui-btn:disabled {
+  opacity: .6;
+  cursor: default;
+  filter: none;
+}
+
+.ui-btn--secondary {
+  background: var(--c-white);
+  color: var(--c-primary);
+  box-shadow: inset 0 0 0 1.5px var(--c-primary);
+}
+
+.ui-btn--secondary:hover {
+  filter: none;
+  background: var(--c-surface);
+}
+
+/* ---------- Lien en forme de texte ---------- */
+.ui-link {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--c-action);
+  font-family: inherit;
+  font-weight: 700;
+  font-size: 15px;
+  line-height: 23px;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.ui-link:hover {
+  text-decoration: underline;
+}
+
+/* ---------- Messages ---------- */
+.ui-alert {
+  margin: 0;
+  padding: 12px 14px;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 15px;
+  line-height: 23px;
+}
+
+.ui-alert--error {
+  background: var(--c-error-bg);
+  color: #8e1b14;
+}
+
+.ui-alert--info {
+  background: var(--c-surface);
+  color: var(--c-primary);
+}
+
+.ui-success {
+  margin: 0;
+  color: var(--c-success);
+  font-weight: 800;
+}

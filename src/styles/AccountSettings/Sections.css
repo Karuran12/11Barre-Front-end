@@ -1,0 +1,173 @@
+.setting-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  
+  .setting-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    min-height: 70px;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--c-border);
+  }
+  
+  .setting-title {
+    margin: 0;
+    color: var(--c-primary);
+    font-weight: 800;
+    font-size: 16px;
+    line-height: 24px;
+  }
+  
+  .setting-desc {
+    margin: 0;
+    color: var(--c-muted);
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 21px;
+  }
+  
+  /* ---------- Interrupteur (piste 52×30, point 24) ---------- */
+  .toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+    padding: 0;
+    border: 0;
+    background: none;
+    color: var(--c-primary);
+    font-family: inherit;
+    cursor: pointer;
+  }
+  
+  .toggle-track {
+    display: flex;
+    width: 52px;
+    height: 30px;
+    padding: 3px;
+    border-radius: 999px;
+    background: var(--c-field);
+    transition: background-color .15s ease;
+  }
+  
+  .toggle-dot {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: var(--c-white);
+    transition: transform .15s ease;
+  }
+  
+  .toggle.is-on .toggle-track {
+    background: var(--c-action);
+  }
+  
+  .toggle.is-on .toggle-dot {
+    transform: translateX(22px);
+  }
+  
+  .toggle-text {
+    min-width: 70px;
+    font-weight: 800;
+    font-size: 14px;
+    line-height: 21px;
+    text-align: left;
+  }
+  
+  .toggle:focus-visible {
+    outline: 3px solid var(--c-accent);
+    outline-offset: 3px;
+    border-radius: 999px;
+  }
+  
+  /* ---------- Bouton + message enregistré ---------- */
+  .settings-actions {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 14px;
+    margin-top: 16px;
+  }
+  
+  /* ---------- Formulaires (Profil, Sécurité) ---------- */
+  .settings-form {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    max-width: 480px;
+    margin-top: 8px;
+  }
+  
+  /* ---------- Mes clubs ---------- */
+  .settings-clubs {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+    margin-top: 8px;
+  }
+  
+  .settings-club-card {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 18px;
+    border: 1px solid var(--c-border);
+    border-radius: 14px;
+    box-shadow: inset 4px 0 0 var(--club-strong, var(--c-primary));
+  }
+  
+  .settings-club-name {
+    margin: 0;
+    color: var(--c-primary);
+    font-weight: 800;
+    font-size: 20px;
+    line-height: 28px;
+  }
+  
+  /* ---------- Confidentialité ---------- */
+  .settings-blocks {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .settings-block {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--c-border);
+  }
+  
+  .settings-block:last-child {
+    border-bottom: 0;
+  }
+  
+  .settings-block .settings-actions {
+    margin-top: 8px;
+  }
+  
+  .settings-danger-btn {
+    margin-top: 8px;
+    color: var(--c-error);
+    box-shadow: inset 0 0 0 1.5px var(--c-error);
+  }
+  
+  .ui-btn--danger {
+    background: var(--c-error);
+  }
+  
+  @media (max-width: 768px) {
+    .setting-row {
+      align-items: flex-start;
+    }
+  
+    .toggle-text {
+      display: none;
+    }
+  }

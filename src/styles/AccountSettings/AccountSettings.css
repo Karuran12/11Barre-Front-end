@@ -1,0 +1,14 @@
+.settings {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    max-width: calc(var(--layout-maxw) + 2 * var(--layout-pad));
+    margin: 0 auto;
+    padding: 32px var(--layout-pad) 64px;
+  }
+  
+  @media (max-width: 768px) {
+    .settings {
+      padding: 20px 16px 40px;
+    }
+  }

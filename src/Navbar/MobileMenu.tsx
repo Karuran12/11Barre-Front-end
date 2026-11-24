@@ -1,6 +1,6 @@
 import type { ReactElement } from "react";
 import { NavLink } from "react-router-dom";
-import { NAV_MENUS } from "./navLinks";
+import { useNavMenus } from "./useNavMenus";
 import "../styles/Navbar/MobileMenu.css";
 
 type Props = {
@@ -10,9 +10,10 @@ type Props = {
 
 // Menu plein écran du burger
 function MobileMenu({ id, open }: Props): ReactElement {
+  const menus = useNavMenus();
   return (
     <div id={id} className="mobile-menu" hidden={!open}>
-      {NAV_MENUS.map((menu) => (
+      {menus.map((menu) => (
         <section key={menu.id} className="mobile-menu-group" aria-labelledby={`mm-${menu.id}`}>
           <h2 id={`mm-${menu.id}`} className="mobile-menu-title">
             <span>{menu.label}</span>

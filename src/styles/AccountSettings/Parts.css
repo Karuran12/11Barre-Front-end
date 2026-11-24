@@ -1,0 +1,38 @@
+.settings-parts {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  
+  .settings-parts-list {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  
+  .settings-logout {
+    margin-top: 4px;
+  }
+  
+  @media (max-width: 900px) {
+    .settings-parts {
+      gap: 12px;
+    }
+  
+    .settings-parts-list {
+      flex-direction: row;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+  
+    .settings-parts-list::-webkit-scrollbar {
+      display: none;
+    }
+  
+    .settings-logout {
+      order: 2;
+    }
+  }

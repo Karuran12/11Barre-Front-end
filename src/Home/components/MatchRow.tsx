@@ -1,32 +1,52 @@
 import type { ReactElement } from "react";
 import LiveBadge from "../../UI/LiveBadge";
 import TeamLabel from "./TeamLabel";
-import type { LiveMatch, UpcomingMatch } from "../../types/home";
+import type { LiveMatch, ResultMatch, UpcomingMatch } from "../../types/home";
 
-type Props =
+type Props = (
   | { kind: "live"; match: LiveMatch }
-  | { kind: "upcoming"; match: UpcomingMatch };
+  | { kind: "upcoming"; match: UpcomingMatch }
+  | { kind: "result"; match: ResultMatch }
+) & {
+  favoriteId?: string; 
+};
+
+function Goals({ home, away }: { home: number; away: number }): ReactElement {
+  return (
+    <div className="home-match-goals" aria-label={`Score : ${home} à ${away}`}>
+      <span>{home}</span>
+      <span>{away}</span>
+    </div>
+  );
+}
 
 // Une ligne du bloc Scores: équipes à gauche, score ou horaire à droite.
 function MatchRow(props: Props): ReactElement {
-  const { home, away } = props.match;
+  const { homeId, awayId } = props.match;
+  const isFav = props.favoriteId !== undefined && [homeId, awayId].includes(props.favoriteId);
 
   return (
-    <li className="home-match">
+    <li className={isFav ? "home-match is-fav" : "home-match"}>
       <div className="home-match-teams">
-        <TeamLabel team={home} />
-        <TeamLabel team={away} />
+        <TeamLabel clubId={homeId} />
+        <TeamLabel clubId={awayId} />
       </div>
 
-      {props.kind === "live" ? (
+      {props.kind === "live" && (
         <div className="home-match-score">
           <LiveBadge label={props.match.status} />
-          <div className="home-match-goals" aria-label={`Score : ${props.match.homeScore} à ${props.match.awayScore}`}>
-            <span>{props.match.homeScore}</span>
-            <span>{props.match.awayScore}</span>
-          </div>
+          <Goals home={props.match.homeScore} away={props.match.awayScore} />
         </div>
-      ) : (
+      )}
+
+      {props.kind === "result" && (
+        <div className="home-match-score">
+          <span className="home-match-done">{props.match.date}</span>
+          <Goals home={props.match.homeScore} away={props.match.awayScore} />
+        </div>
+      )}
+
+      {props.kind === "upcoming" && (
         <div className="home-match-when">
           <strong>{props.match.time}</strong>
           <span>{props.match.date}</span>

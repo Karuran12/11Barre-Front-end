@@ -302,3 +302,73 @@ h3 {
   background: var(--c-surface);
   color: var(--c-muted);
 }
+
+.club-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.link-reset {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--c-action);
+  font: inherit;
+  font-weight: 700;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.club-cell {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: inherit;
+  text-decoration: none;
+}
+
+a.club-cell:hover {
+  text-decoration: underline;
+}
+
+.source-note {
+  margin: -4px 0 12px;
+}
+
+.score-line .club-name {
+  font-weight: 600;
+}
+
+.teams {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 10px;
+}
+
+.club-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-align: left;
+}
+
+.club-btn.active .club-crest {
+  padding: 2px;
+  border-radius: 50%;
+  background: var(--c-white);
+}
+
+.ticket-match {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+}
+
+.ticket-vs {
+  color: var(--c-muted);
+  font-weight: 600;
+  font-size: var(--fs-label);
+}
