@@ -9,14 +9,16 @@ import { useFavoriteClub } from "../Club/useFavoriteClub";
 import { ordinal } from "../Club/clubStats";
 import "../styles/LDC/Pages.css";
 export default function MonClub() {
-    const { data, loading, error } = useAsync(getClubs);
+    const [refresh, setRefresh] = useState(0);
+    const { data, loading, error } = useAsync(() => getClubs(refresh > 0), refresh);
+    const list = data?.summaries ?? [];
     const [query, setQuery] = useState("");
     // Le club choisi ici devient l'équipe favorite de tout le site (accueil, couleurs, maillot).
     const { club: favorite, setClubId } = useFavoriteClub();
     const selectedId = favorite?.id;
     const [alerts, setAlerts] = useState([]); // ids des clubs avec alertes
-    const clubs = (data ?? []).filter((c) => c.name.toLowerCase().includes(query.trim().toLowerCase()));
-    const club = data?.find((c) => c.id === selectedId);
+    const clubs = list.filter((c) => c.name.toLowerCase().includes(query.trim().toLowerCase()));
+    const club = list.find((c) => c.id === selectedId);
     const alertsOn = club ? alerts.includes(club.id) : false;
     const toggleAlerts = () => {
         if (!club)
@@ -47,7 +49,7 @@ export default function MonClub() {
           <dl className="stats">
             <div><dt>Classement</dt><dd>{ordinal(club.rank)}</dd></div>
             <div><dt>Points</dt><dd>{club.points}</dd></div>
-            <div><dt>Forme</dt><dd aria-label={`Forme : ${club.form.join(", ")}`}>{club.form.join(" ")}</dd></div>
+            <div><dt>Forme</dt><dd aria-label={`Forme : ${club.form.join(", ") || "aucun match"}`}>{club.form.join(" ") || "–"}</dd></div>
           </dl>
           <p className="meta">Prochain match</p>
           <p className="next"><strong>{club.nextMatch}</strong></p>
@@ -59,6 +61,13 @@ export default function MonClub() {
             <Link to="/ldc/matchs" className="btn btn-outline">Voir l'historique</Link>
           </div>
           <p className="meta">Forme : V = victoire, N = nul, D = défaite.</p>
+          <p className="meta source-note">
+            {data?.source === "api"
+                ? "Données officielles football-data.org"
+                : "Données de démonstration : ajoute une clé football-data.org pour les vrais chiffres."}
+            {" "}
+            <button type="button" className="link-reset" onClick={() => setRefresh((n) => n + 1)} disabled={loading}>Actualiser</button>
+          </p>
           <button type="button" className="link-reset" onClick={() => setClubId(null)}>Ne plus suivre ce club</button>
         </section>)}
       {!club && !loading && (<section className="club-card" aria-live="polite">

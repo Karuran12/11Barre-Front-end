@@ -1,5 +1,5 @@
 import { ARTICLE_IMAGES as IMG } from "../Home/articleImages";
-import { getClubSummary, ordinal } from "./clubStats";
+import { getClubSummary, ordinal, type ClubSummary } from "./clubStats";
 import type { Club } from "../types/club";
 import type { MercatoItem, NewsFeed } from "../types/home";
 
@@ -9,8 +9,7 @@ function headline(club: Club, rank: number): string {
   return `${club.name} n'a plus le droit à l'erreur en Ligue des champions`;
 }
 
-export function buildClubFeed(club: Club): NewsFeed {
-  const summary = getClubSummary(club.id);
+export function buildClubFeed(club: Club, summary: ClubSummary | undefined = getClubSummary(club.id)): NewsFeed {
   const rank = summary?.rank ?? 36;
   const points = summary?.points ?? 0;
   const next = summary?.nextMatch.split(" · ")[0];
@@ -36,14 +35,14 @@ export function buildClubFeed(club: Club): NewsFeed {
       {
         id: `${club.id}-classement`,
         category: "Classement",
-        title: `${ordinal(rank)} avec ${points} pts: où en est ${club.shortName} après 4 journées ?`,
+        title: `${ordinal(rank)} avec ${points} pts: où en est ${club.shortName} cette saison ?`,
         publishedAgo: "Il y a 5 h",
         image: rank <= 8 ? IMG.classement : IMG.barrages,
       },
       {
         id: `${club.id}-infirmerie`,
         category: "Infirmerie",
-        title: `${club.shortName}: le point sur les blessés avant la 5e journée`,
+        title: `${club.shortName}: le point sur les blessés avant le prochain match`,
         publishedAgo: "Il y a 8 h",
         image: IMG.infirmerie,
       },

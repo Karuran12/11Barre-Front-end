@@ -8,6 +8,7 @@ import { mercato, news, nextMatchLabel } from "./homeData";
 import { useHomeMatches } from "./useHomeMatches";
 import { buildClubFeed, buildClubMercato } from "../Club/clubNews";
 import { useFavoriteClub } from "../Club/useFavoriteClub";
+import { useClubSummary } from "../Club/useClubSummary";
 import { clubName } from "../mocks/clubs";
 import "../styles/Home/Home.css";
 import "../styles/Home/Scores.css";
@@ -18,8 +19,9 @@ import "../styles/Home/Scores.css";
 function Home(): ReactElement {
   const { club } = useFavoriteClub();
   const matches = useHomeMatches();
+  const summary = useClubSummary(club?.id);
 
-  const clubFeed = club && { label: club.shortName, feed: buildClubFeed(club) };
+  const clubFeed = club && { label: club.shortName, feed: buildClubFeed(club, summary) };
   const mercatoItems = club ? [...buildClubMercato(club), ...mercato] : mercato;
 
   return (
@@ -31,7 +33,7 @@ function Home(): ReactElement {
       </div>
 
       <div className="home-main">
-        <ClubBanner nextMatch={club && nextMatchLabel(matches, club.id, clubName)} />
+        <ClubBanner summary={summary} nextMatch={club && nextMatchLabel(matches, club.id, clubName)} />
         {/* key : on revient sur l'onglet du club quand il change */}
         <NewsSection key={club?.id ?? "ldc"} feeds={news} clubFeed={clubFeed} />
         <MercatoSection items={mercatoItems} />

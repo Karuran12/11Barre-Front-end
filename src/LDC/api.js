@@ -1,6 +1,6 @@
 import { standingsMock } from "../mocks/standings";
 import { matchesMock, ticketsMock } from "../mocks/ldc";
-import { getAllClubSummaries } from "../Club/clubStats";
+import { loadClubSummaries } from "../Club/liveClubStats";
 import { findClub } from "../Club/clubMatching";
 import { fetchStandings } from "../services/footballData";
 // Si VITE_API_URL est défini, on appelle le back ; sinon on utilise les mocks.
@@ -45,6 +45,7 @@ export async function getStandings() {
 }
 export const getResults = (matchday) => fetchOrMock(`/matches?matchday=${matchday}`, matchesMock.filter((m) => m.matchday === matchday && m.homeScore !== undefined));
 export const getUpcoming = () => fetchOrMock("/matches/upcoming", matchesMock.filter((m) => m.homeScore === undefined));
-export const getClubs = () => fetchOrMock("/clubs", getAllClubSummaries());
+// Clubs avec classement, points, forme et prochain match (API si clé configurée, sinon démo)
+export const getClubs = (force = false) => loadClubSummaries(force);
 export const getTickets = () => fetchOrMock("/tickets", ticketsMock);
 // TODO(back) : POST /clubs/:id/alerts et POST /tickets/:id/waitlist
