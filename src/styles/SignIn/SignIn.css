@@ -1,5 +1,5 @@
 #SignInComponent{
-    width: 30vw;
+    width: 442px;
     height: 577px;
     display: flex;
     flex-direction: column;
@@ -22,4 +22,15 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+    color: rgba(91, 100, 117, 1);
+    margin-bottom: 20px;
+    font-weight: 600;
+    flex-shrink: 0;
+}
+
+#SignInComponent #SignInLabel{
+    text-align: center;
+    color: rgba(31, 76, 224, 1);
+    font-weight: 900;
+    font-size: 16px;
 }
