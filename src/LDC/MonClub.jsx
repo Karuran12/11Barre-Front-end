@@ -62,10 +62,6 @@ export default function MonClub() {
           </div>
           <p className="meta">Forme : V = victoire, N = nul, D = défaite.</p>
           <p className="meta source-note">
-            {data?.source === "api"
-                ? "Données officielles football-data.org"
-                : "Données de démonstration : ajoute une clé football-data.org pour les vrais chiffres."}
-            {" "}
             <button type="button" className="link-reset" onClick={() => setRefresh((n) => n + 1)} disabled={loading}>Actualiser</button>
           </p>
           <button type="button" className="link-reset" onClick={() => setClubId(null)}>Ne plus suivre ce club</button>

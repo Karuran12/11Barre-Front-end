@@ -1,0 +1,451 @@
+.ldc-matches-head {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+  
+  .ldc-matches-head h2 {
+    margin-bottom: 4px;
+  }
+  
+  .ldc-matches-tools {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px 16px;
+    margin: 8px 0 16px;
+  }
+  
+  .ldc-matches-tools .source-note {
+    margin: 0;
+  }
+  
+  .ldc-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 700;
+    font-size: 15px;
+    cursor: pointer;
+  }
+  
+  .ldc-toggle input {
+    width: 18px;
+    height: 18px;
+    accent-color: var(--club-strong, var(--c-action));
+  }
+  
+  /* ---------- Choix de la journée ---------- */
+  .ldc-daynav {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    min-width: 0;
+    max-width: 100%;
+  }
+  
+  .ldc-daynav-list {
+    position: relative;
+    display: flex;
+    gap: 4px;
+    min-width: 0;
+    padding: 4px;
+    overflow-x: auto;
+    scrollbar-width: none;
+    border-radius: 12px;
+    background: var(--c-surface);
+  }
+  
+  .ldc-daynav-list::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .ldc-daynav-chip {
+    flex-shrink: 0;
+    min-width: 44px;
+    padding: 8px 12px;
+    border: 0;
+    border-radius: 8px;
+    background: transparent;
+    color: var(--c-primary);
+    font: inherit;
+    font-weight: 700;
+    font-size: 15px;
+    cursor: pointer;
+  }
+  
+  .ldc-daynav-chip:hover {
+    background: var(--c-white);
+  }
+  
+  .ldc-daynav-chip.active {
+    background: var(--c-primary);
+    color: var(--c-white);
+  }
+  
+  .ldc-daynav-arrow {
+    flex-shrink: 0;
+    width: 40px;
+    height: 40px;
+    border: 1px solid var(--c-border);
+    border-radius: 50%;
+    background: var(--c-white);
+    color: var(--c-primary);
+    font-size: 24px;
+    line-height: 1;
+    cursor: pointer;
+  }
+  
+  .ldc-daynav-arrow:disabled {
+    opacity: .35;
+    cursor: default;
+  }
+  
+  /* ---------- Jours et liste des matchs ---------- */
+  .ldc-day + .ldc-day,
+  .ldc-tickets-group + .ldc-tickets-group {
+    margin-top: 28px;
+  }
+  
+  .ldc-day-title {
+    margin: 0 0 10px;
+    color: var(--c-text-soft);
+    font-size: 15px;
+    font-weight: 800;
+    line-height: 22px;
+    text-transform: uppercase;
+    letter-spacing: .04em;
+  }
+  
+  .ldc-match-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    border: 1px solid var(--c-border);
+    border-radius: 14px;
+    overflow: hidden;
+  }
+  
+  .ldc-match {
+    display: grid;
+    grid-template-columns: 96px minmax(0, 1fr) 210px;
+    align-items: center;
+    gap: 12px 20px;
+    padding: 16px 20px;
+    background: var(--c-white);
+  }
+  
+  .has-actions .ldc-match {
+    grid-template-columns: 96px minmax(0, 1fr) 210px 256px;
+  }
+  
+  .ldc-match + .ldc-match {
+    border-top: 1px solid var(--c-border);
+  }
+  
+  .ldc-match.is-fav {
+    background: var(--c-zone-top);
+    box-shadow: inset 4px 0 0 var(--club-strong, var(--c-action));
+  }
+  
+  .ldc-match-when {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2px;
+    font-size: 15px;
+  }
+  
+  .ldc-match-when strong {
+    font-size: 18px;
+  }
+  
+  .ldc-match-time {
+    color: var(--c-muted);
+    font-size: 14px;
+  }
+  
+  .ldc-status {
+    padding: 2px 8px;
+    border-radius: 999px;
+    background: var(--c-surface);
+    color: var(--c-muted);
+    font-weight: 700;
+    font-size: 13px;
+  }
+  
+  .ldc-status.is-live {
+    background: var(--c-error-bg);
+    color: var(--c-live-text);
+  }
+  
+  .ldc-match-board {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+    align-items: center;
+    gap: 14px;
+  }
+  
+  .ldc-match-home {
+    display: flex;
+    justify-content: flex-end;
+    text-align: right;
+  }
+  
+  .ldc-match-home .ldc-team {
+    flex-direction: row-reverse;
+  }
+  
+  .ldc-team {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    min-width: 0;
+    font-weight: 600;
+  }
+  
+  .ldc-team-name {
+    overflow-wrap: anywhere;
+  }
+  
+  .ldc-team.is-unknown {
+    color: var(--c-muted);
+    font-style: italic;
+  }
+  
+  .ldc-team-unknown {
+    display: inline-flex;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: var(--c-surface);
+    color: var(--c-muted);
+    font-weight: 800;
+    font-style: normal;
+  }
+  
+  .ldc-match-side.is-winner .ldc-team {
+    font-weight: 800;
+  }
+  
+  .ldc-match-side.is-loser .ldc-team-name {
+    color: var(--c-muted);
+  }
+  
+  .ldc-match-score {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    min-width: 76px;
+    padding: 6px 10px;
+    border-radius: 8px;
+    background: var(--c-surface);
+    color: var(--c-muted);
+    font-weight: 700;
+    font-size: 20px;
+    font-variant-numeric: tabular-nums;
+  }
+  
+  .ldc-match.is-finished .ldc-match-score,
+  .ldc-match.is-live .ldc-match-score {
+    background: var(--c-primary);
+    color: rgba(255, 255, 255, .7);
+  }
+  
+  .ldc-match-score .is-winner {
+    color: var(--c-white);
+    font-weight: 800;
+  }
+  
+  .ldc-match.is-live .ldc-match-score {
+    background: var(--c-live);
+    color: var(--c-white);
+  }
+  
+  .ldc-match-vs {
+    font-size: 15px;
+    text-transform: uppercase;
+  }
+  
+  .ldc-match-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+    min-width: 0;
+    font-size: 14px;
+  }
+  
+  .ldc-match-venue {
+    color: var(--c-muted);
+  }
+  
+  .ldc-outcome {
+    padding: 2px 10px;
+    border-radius: 999px;
+    font-weight: 800;
+    font-size: 13px;
+  }
+  
+  .ldc-outcome.is-win {
+    background: var(--c-success-bg);
+    color: var(--c-success);
+  }
+  
+  .ldc-outcome.is-loss {
+    background: var(--c-error-bg);
+    color: var(--c-error);
+  }
+  
+  .ldc-outcome.is-draw {
+    background: var(--c-surface);
+    color: var(--c-text-soft);
+  }
+  
+  .ldc-match-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+  }
+  
+  .ldc-match-actions:empty {
+    display: none;
+  }
+  
+  .ldc-match-actions .btn {
+    white-space: nowrap;
+    text-decoration: none;
+  }
+  
+  /* ---------- Billetterie ---------- */
+  .ldc-tickets .ticket-grid {
+    margin-top: 0;
+  }
+  
+  .ticket-card {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .ticket-card.is-fav {
+    border-color: var(--club-strong, var(--c-action));
+    box-shadow: inset 0 4px 0 var(--club-strong, var(--c-action));
+  }
+  
+  .ldc-ticket-date {
+    margin: 0;
+    color: var(--c-text-soft);
+    font-size: 15px;
+  }
+  
+  .ticket-card .ticket-match {
+    margin: 0;
+    font-size: 17px;
+    line-height: 24px;
+  }
+  
+  .ldc-ticket-venue {
+    margin: 0;
+    flex-grow: 1;
+  }
+  
+  .ticket-card .btn {
+    text-align: center;
+    text-decoration: none;
+  }
+  
+  /* ---------- Tablette et mobile ---------- */
+  @media (max-width: 1024px) {
+    .ldc-match,
+    .has-actions .ldc-match {
+      grid-template-columns: 80px minmax(0, 1fr);
+    }
+  
+    .ldc-match-info,
+    .ldc-match-actions {
+      grid-column: 2;
+    }
+  
+    .ldc-match-info {
+      flex-direction: row;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 6px 12px;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .ldc-daynav {
+      width: 100%;
+    }
+  
+    .ldc-daynav-list {
+      flex: 1;
+    }
+  
+    .ldc-match,
+    .has-actions .ldc-match {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 10px;
+      padding: 14px 16px;
+    }
+  
+    .ldc-match-when {
+      flex-direction: row;
+      align-items: center;
+      gap: 8px;
+    }
+  
+    .ldc-match-when strong {
+      font-size: 16px;
+    }
+  
+    .ldc-match-info,
+    .ldc-match-actions {
+      grid-column: 1;
+    }
+  
+    .ldc-match-board {
+      grid-template-columns: minmax(0, 1fr) auto;
+      grid-template-areas:
+        "home score"
+        "away score";
+      gap: 8px 12px;
+    }
+  
+    .ldc-match-home {
+      grid-area: home;
+      justify-content: flex-start;
+      text-align: left;
+    }
+  
+    .ldc-match-home .ldc-team {
+      flex-direction: row;
+    }
+  
+    .ldc-match-away {
+      grid-area: away;
+    }
+  
+    .ldc-match-score {
+      grid-area: score;
+      flex-direction: column;
+      gap: 2px;
+      min-width: 44px;
+      padding: 6px 8px;
+      font-size: 18px;
+    }
+  
+    .ldc-match-dash {
+      display: none;
+    }
+  
+    .ldc-match-actions .btn {
+      flex: 1;
+      text-align: center;
+    }
+  }

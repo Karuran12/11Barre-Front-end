@@ -13,7 +13,6 @@ import "../styles/ClubDetail/ClubDetail.css";
 
 type Rank = { rank: number; points: number; played: number };
 
-// Classement du club (réel si l'API répond, sinon données de démonstration)
 function useClubRank(clubId: string | undefined): Rank | undefined {
   const [rank, setRank] = useState<{ clubId: string; value?: Rank }>();
   useEffect(() => {
@@ -29,7 +28,6 @@ function useClubRank(clubId: string | undefined): Rank | undefined {
   return rank && rank.clubId === clubId ? rank.value : undefined;
 }
 
-// Fiche club: identité, classement, effectif réel, onze titulaire et notes tactiques.
 function ClubDetail(): ReactElement {
   const { clubId = "" } = useParams();
   const club = getClub(clubId);
@@ -98,8 +96,11 @@ function ClubDetail(): ReactElement {
             <button type="button" className="btn btn-outline" onClick={() => setRetry((n) => n + 1)}>Réessayer</button>
           </div>
         )}
+        {team && team.squad?.length ? (
+          <p className="meta">Photos des joueurs non fournies par football-data.org : avatar aux couleurs du club.</p>
+        ) : null}
         {team && (team.squad?.length ? (
-          <SquadTable players={team.squad} lineup={plan.lineup} onToggle={toggleStarter} />
+          <SquadTable club={club} players={team.squad} lineup={plan.lineup} onToggle={toggleStarter} />
         ) : (
           <p>Aucun joueur renvoyé par l'API pour ce club.</p>
         ))}

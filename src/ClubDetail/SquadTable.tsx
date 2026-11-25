@@ -1,59 +1,47 @@
-import type { ReactElement } from "react";
+import type { CSSProperties, ReactElement } from "react";
+import PlayerCard from "./PlayerCard";
 import { GROUP_ORDER, positionGroup } from "./positions";
 import { MAX_STARTERS } from "./useClubPlan";
 import type { ApiPlayer } from "../services/footballData";
+import type { Club } from "../types/club";
 
 type Props = {
+  club: Club;
   players: ApiPlayer[];
   lineup: number[];
   onToggle: (playerId: number) => void;
 };
 
-// Effectif groupé par poste, avec une case pour composer son onze
-function SquadTable({ players, lineup, onToggle }: Props): ReactElement {
+function SquadTable({ club, players, lineup, onToggle }: Props): ReactElement {
   const full = lineup.length >= MAX_STARTERS;
+  const byNumber = (a: ApiPlayer, b: ApiPlayer) => (a.shirtNumber ?? 999) - (b.shirtNumber ?? 999);
   const groups = GROUP_ORDER.map((label) => ({
     label,
-    players: players.filter((p) => positionGroup(p.position) === label),
+    players: players.filter((p) => positionGroup(p.position) === label).sort(byNumber),
   })).filter((g) => g.players.length > 0);
 
+  const style = { "--squad-bg": club.colors.primary, "--squad-fg": club.colors.secondary } as CSSProperties;
+
   return (
-    <div className="squad-wrap">
-      <table className="squad">
-        <caption className="ui-sr-only">Effectif du club</caption>
-        <thead>
-          <tr>
-            <th scope="col">Joueur</th>
-            <th scope="col">Nationalité</th>
-            <th scope="col" className="squad-check">Titulaire</th>
-          </tr>
-        </thead>
-        {groups.map((g) => (
-          <tbody key={g.label}>
-            <tr className="squad-group">
-              <th colSpan={3} scope="colgroup">{g.label}</th>
-            </tr>
-            {g.players.map((p) => {
-              const starter = lineup.includes(p.id);
-              return (
-                <tr key={p.id} className={starter ? "is-starter" : undefined}>
-                  <th scope="row">{p.name}</th>
-                  <td>{p.nationality ?? "—"}</td>
-                  <td className="squad-check">
-                    <input
-                      type="checkbox"
-                      aria-label={`${p.name} titulaire`}
-                      checked={starter}
-                      disabled={!starter && full}
-                      onChange={() => onToggle(p.id)}
-                    />
-                  </td>
-                </tr>
-              );
-            })}
-          </tbody>
-        ))}
-      </table>
+    <div className="squad-groups" style={style}>
+      {groups.map((g) => (
+        <section key={g.label} className="squad-group" aria-label={g.label}>
+          <h3 className="squad-group-title">
+            {g.label} <span className="squad-group-count">{g.players.length}</span>
+          </h3>
+          <ul className="player-grid">
+            {g.players.map((p) => (
+              <PlayerCard
+                key={p.id}
+                player={p}
+                starter={lineup.includes(p.id)}
+                disabled={full}
+                onToggle={() => onToggle(p.id)}
+              />
+            ))}
+          </ul>
+        </section>
+      ))}
     </div>
   );
 }

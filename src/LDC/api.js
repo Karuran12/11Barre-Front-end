@@ -1,5 +1,4 @@
 import { standingsMock } from "../mocks/standings";
-import { matchesMock, ticketsMock } from "../mocks/ldc";
 import { loadClubSummaries } from "../Club/liveClubStats";
 import { findClub } from "../Club/clubMatching";
 import { fetchStandings } from "../services/footballData";
@@ -7,7 +6,7 @@ import { fetchStandings } from "../services/footballData";
 const API_URL = import.meta.env.VITE_API_URL;
 async function fetchOrMock(path, mock) {
     if (!API_URL) {
-        await new Promise((r) => setTimeout(r, 300)); // simule le réseau
+        await new Promise((r) => setTimeout(r, 300));
         return mock;
     }
     const res = await fetch(`${API_URL}${path}`);
@@ -16,7 +15,6 @@ async function fetchOrMock(path, mock) {
     return res.json();
 }
 
-// Classement: vraies données football-data.org si la clé API est configurée,
 const toRow = (r) => {
     const club = findClub(r.team);
     return {
@@ -43,9 +41,5 @@ export async function getStandings() {
         return { source: "mock", rows };
     }
 }
-export const getResults = (matchday) => fetchOrMock(`/matches?matchday=${matchday}`, matchesMock.filter((m) => m.matchday === matchday && m.homeScore !== undefined));
-export const getUpcoming = () => fetchOrMock("/matches/upcoming", matchesMock.filter((m) => m.homeScore === undefined));
 // Clubs avec classement, points, forme et prochain match (API si clé configurée, sinon démo)
 export const getClubs = (force = false) => loadClubSummaries(force);
-export const getTickets = () => fetchOrMock("/tickets", ticketsMock);
-// TODO(back) : POST /clubs/:id/alerts et POST /tickets/:id/waitlist

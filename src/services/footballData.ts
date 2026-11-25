@@ -6,6 +6,9 @@ export type ApiTeam = {
   shortName?: string;
   tla?: string;
   crest?: string;
+  venue?: string | null;
+  website?: string | null;
+  address?: string | null;
 };
 
 export type ApiStanding = {
@@ -23,8 +26,12 @@ export type ApiStanding = {
 export type ApiPlayer = {
   id: number;
   name: string;
+  firstName?: string | null;
+  lastName?: string | null;
   position?: string | null;
+  dateOfBirth?: string | null;
   nationality?: string | null;
+  shirtNumber?: number | null;
 };
 
 export type ApiTeamDetail = ApiTeam & {
@@ -34,17 +41,22 @@ export type ApiTeamDetail = ApiTeam & {
   squad?: ApiPlayer[];
 };
 
-export type ApiMatchStatus = "SCHEDULED" | "TIMED" | "IN_PLAY" | "PAUSED" | "LIVE" | "FINISHED" | "POSTPONED" | "SUSPENDED" | "CANCELLED";
+export type ApiMatchStatus = "SCHEDULED" | "TIMED" | "IN_PLAY" | "PAUSED" | "LIVE" | "FINISHED" | "AWARDED" | "POSTPONED" | "SUSPENDED" | "CANCELLED";
+
+export type ApiMatchTeam = Partial<ApiTeam> & { id: number | null; name: string | null };
 
 export type ApiMatch = {
   id: number;
   utcDate: string;
   status: ApiMatchStatus;
   matchday?: number | null;
+  stage?: string | null;
+  venue?: string | null;
   minute?: number | string | null;
+  season?: { startDate?: string; endDate?: string; currentMatchday?: number | null } | null;
   homeTeam: ApiTeam;
   awayTeam: ApiTeam;
-  score: { fullTime: { home: number | null; away: number | null } };
+  score: { winner?: "HOME_TEAM" | "AWAY_TEAM" | "DRAW" | null; fullTime: { home: number | null; away: number | null } };
 };
 
 async function apiGet<T>(path: string, signal?: AbortSignal): Promise<T> {
@@ -74,7 +86,28 @@ export function fetchTeam(id: number, signal?: AbortSignal): Promise<ApiTeamDeta
   return apiGet<ApiTeamDetail>(`/teams/${id}`, signal);
 }
 
-export async function fetchMatches(signal?: AbortSignal): Promise<ApiMatch[]> {
-  const data = await apiGet<{ matches?: ApiMatch[] }>("/competitions/CL/matches", signal);
-  return data.matches ?? [];
+const MATCHES_CACHE_MS = 30_000;
+let matchesCache: { at: number; promise: Promise<ApiMatch[]> } | undefined;
+
+export function fetchMatches(signal?: AbortSignal): Promise<ApiMatch[]> {
+  if (matchesCache && Date.now() - matchesCache.at < MATCHES_CACHE_MS) return matchesCache.promise;
+  const promise = apiGet<{ matches?: ApiMatch[] }>("/competitions/CL/matches")
+    .then((data) => data.matches ?? [])
+    .catch((e: unknown) => {
+      matchesCache = undefined;
+      throw e;
+    });
+  matchesCache = { at: Date.now(), promise };
+  return signal ? Promise.race([promise, abortPromise(signal)]) : promise;
+}
+
+export function clearMatchesCache(): void {
+  matchesCache = undefined;
+}
+
+function abortPromise(signal: AbortSignal): Promise<never> {
+  return new Promise((_, reject) => {
+    if (signal.aborted) reject(new DOMException("Aborted", "AbortError"));
+    signal.addEventListener("abort", () => reject(new DOMException("Aborted", "AbortError")), { once: true });
+  });
 }

@@ -39,7 +39,7 @@ export async function fetchHomeMatches(signal?: AbortSignal): Promise<HomeMatche
         status: liveStatus(m),
       })),
     upcoming: all
-      .filter((m) => UPCOMING.has(m.status))
+      .filter((m) => UPCOMING.has(m.status) && m.homeTeam.id && m.awayTeam.id)
       .sort(byDate)
       .slice(0, MAX_ROWS)
       .map((m) => ({

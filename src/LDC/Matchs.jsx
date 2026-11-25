@@ -1,50 +1,63 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { getResults, getUpcoming } from "./api";
-import { useAsync } from "./useAsync";
-import AsyncState from "./AsyncState";
-import ClubName from "../Club/ClubName";
+import MatchRow from "./matches/MatchRow";
+import MatchdayNav from "./matches/MatchdayNav";
+import SourceNote from "./matches/SourceNote";
+import { byDay } from "./matches/byDay";
+import { involves } from "./matches/ldcMatches";
+import { useLdcMatches } from "./matches/useLdcMatches";
+import { useFavoriteClub } from "../Club/useFavoriteClub";
+import { PATHS } from "../routes/paths";
 import "../styles/LDC/Pages.css";
-const MATCHDAYS = [1, 2, 3, 4];
-export default function Matchs() {
-    const [matchday, setMatchday] = useState(4);
-    const results = useAsync(() => getResults(matchday), matchday);
-    const upcoming = useAsync(getUpcoming);
-    return (<>
-      <section aria-labelledby="results-title">
-        <div className="section-head">
-          <h2 id="results-title">Résultats</h2>
-          <div className="matchday" role="group" aria-label="Choisir la journée">
-            {MATCHDAYS.map((d) => (<button key={d} type="button" aria-pressed={d === matchday} className={d === matchday ? "chip active" : "chip"} onClick={() => setMatchday(d)}>
-                J{d}
-              </button>))}
-          </div>
-        </div>
-        <AsyncState loading={results.loading} error={results.error} label="les résultats"/>
-        {!results.loading && !results.error && results.data?.length === 0 && <p>Aucun résultat pour cette journée.</p>}
-        <ul className="result-grid">
-          {results.data?.map((m) => (<li key={m.id} className="result-card">
-              <p className="meta">{m.date} · Terminé</p>
-              <p className="score-line"><ClubName clubId={m.homeId}/><strong>{m.homeScore}</strong></p>
-              <p className="score-line"><ClubName clubId={m.awayId}/><strong>{m.awayScore}</strong></p>
-            </li>))}
-        </ul>
-      </section>
+import "../styles/LDC/Matches.css";
 
-      <section aria-labelledby="upcoming-title" className="block">
-        <h2 id="upcoming-title">Prochains matchs · 5e journée</h2>
-        <AsyncState loading={upcoming.loading} error={upcoming.error} label="les prochains matchs"/>
-        <ul className="upcoming">
-          {upcoming.data?.map((m) => (<li key={m.id} className="upcoming-row">
-              <div className="when"><strong>{m.time}</strong><span>{m.date}</span></div>
-              <p className="teams"><ClubName clubId={m.homeId}/><span aria-hidden="true">–</span><ClubName clubId={m.awayId}/></p>
-              <div className="actions">
-                {/* TODO*/}
-                <button type="button" className="btn">Faire mon prono</button>
-                <Link to="/ldc/billetterie" className="btn btn-outline">Billets</Link>
-              </div>
-            </li>))}
-        </ul>
-      </section>
-    </>);
+export default function Matchs() {
+    const { data, loading, refresh } = useLdcMatches();
+    const { club } = useFavoriteClub();
+    const [picked, setPicked] = useState(null);
+    const [onlyMine, setOnlyMine] = useState(false);
+
+    const groups = data?.groups ?? [];
+    const group = groups.find((g) => g.key === picked) ?? groups.find((g) => g.key === data?.currentKey);
+    const matches = (group?.matches ?? []).filter((m) => !onlyMine || involves(m, club?.id));
+    const counts = group && {
+        done: group.matches.filter((m) => m.state === "finished").length,
+        total: group.matches.length,
+    };
+
+    return (<section aria-labelledby="matchs-title" className="ldc-matches">
+      <div className="section-head ldc-matches-head">
+        <div>
+          <h2 id="matchs-title">{group ? `${group.phase} · ${group.label}` : "Matchs"}</h2>
+          {counts && <p className="meta">{counts.done} match{counts.done > 1 ? "s" : ""} joué{counts.done > 1 ? "s" : ""} sur {counts.total}</p>}
+        </div>
+        {groups.length > 0 && <MatchdayNav groups={groups} value={group?.key ?? ""} onChange={setPicked}/>}
+      </div>
+
+      <div className="ldc-matches-tools">
+        <SourceNote source={data?.source} loading={loading} onRefresh={refresh}/>
+        {club && (<label className="ldc-toggle">
+            <input type="checkbox" checked={onlyMine} onChange={(e) => setOnlyMine(e.target.checked)}/>
+            Seulement {club.shortName}
+          </label>)}
+      </div>
+
+      {loading && !data && <p role="status">Chargement des matchs…</p>}
+      {data && groups.length === 0 && <p>Aucun match disponible pour cette saison.</p>}
+      {group && matches.length === 0 && <p>{club?.shortName} ne joue pas lors de cette journée.</p>}
+
+      {byDay(matches).map((day) => {
+            const actionable = (m) => m.state === "upcoming" && m.home.known && m.away.known;
+            const withActions = day.matches.some(actionable);
+            return (<div key={day.key} className="ldc-day">
+          <h3 className="ldc-day-title">{day.label}</h3>
+          <ul className={withActions ? "ldc-match-list has-actions" : "ldc-match-list"}>
+            {day.matches.map((m) => (<MatchRow key={m.id} match={m} favoriteId={club?.id} favoriteName={club?.shortName} showActions={withActions} actions={actionable(m) ? (<>
+                    <Link to={PATHS.pronos} className="btn">Faire mon prono</Link>
+                    <Link to={PATHS.ldcBilletterie} className="btn btn-outline">Billets</Link>
+                  </>) : undefined}/>))}
+          </ul>
+        </div>);
+        })}
+    </section>);
 }

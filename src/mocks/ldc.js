@@ -26,9 +26,3 @@ export const matchesMock = [
     match(13, 5, "Mer. 25 nov.", "21:00", "psg", "mancity"),
     match(14, 5, "Mer. 25 nov.", "21:00", "bayern", "arsenal"),
 ];
-
-export const ticketsMock = [
-    { id: 1, homeId: "psg", awayId: "mancity", match: "PSG – Manchester City", when: "Mer. 25 nov. · 21:00", venue: "Parc des Princes", status: "available", priceFrom: 65 },
-    { id: 2, homeId: "barca", awayId: "dortmund", match: "FC Barcelone – Dortmund", when: "Mar. 24 nov. · 21:00", venue: "Spotify Camp Nou", status: "low", priceFrom: 89 },
-    { id: 3, homeId: "bayern", awayId: "arsenal", match: "Bayern Munich – Arsenal", when: "Mer. 25 nov. · 21:00", venue: "Allianz Arena", status: "soldout" },
-];

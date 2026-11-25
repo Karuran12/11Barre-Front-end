@@ -1,6 +1,6 @@
 import { findClub } from "./clubMatching";
 import { getAllClubSummaries, type ClubSummary } from "./clubStats";
-import { fetchMatches, fetchStandings, type ApiMatch, type ApiStanding } from "../services/footballData";
+import { clearMatchesCache, fetchMatches, fetchStandings, type ApiMatch, type ApiStanding } from "../services/footballData";
 
 export type ClubSummaries = {
   source: "api" | "mock";
@@ -64,6 +64,7 @@ async function loadFromApi(): Promise<ClubSummaries> {
 let cache: { at: number; promise: Promise<ClubSummaries> } | undefined;
 
 export function loadClubSummaries(force = false): Promise<ClubSummaries> {
+  if (force) clearMatchesCache();
   if (!force && cache && Date.now() - cache.at < CACHE_MS) return cache.promise;
 
   const promise = loadFromApi().catch((): ClubSummaries => {
